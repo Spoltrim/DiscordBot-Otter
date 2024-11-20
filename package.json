@@ -1,0 +1,22 @@
+{
+  "name": "bot-discord",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Spoltrim",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/builders": "^1.6.5",
+    "@discordjs/collection": "^1.5.3",
+    "@discordjs/rest": "^1.7.1",
+    "@discordjs/voice": "^0.16.0",
+    "discord": "^0.8.2",
+    "discord-api-types": "^0.37.55",
+    "discord.js": "^14.13.0",
+    "moment": "^2.29.1",
+    "nodemon": "^2.0.7"
+  }
+}
