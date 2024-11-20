@@ -3,6 +3,7 @@ const {
   SlashCommandBuilder,
   PermissionsBitField,
 } = require("discord.js");
+
 const config = require("../../config.json");
 module.exports = {
   data: new SlashCommandBuilder()
@@ -30,9 +31,4 @@ module.exports = {
       ],
     });
   },
-};
-
-module.exports.help = {
-  name: "lock",
-  description: "Permet de fermer un channel",
 };

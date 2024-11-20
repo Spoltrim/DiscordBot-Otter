@@ -51,8 +51,3 @@ module.exports = {
     });
   },
 };
-
-module.exports.help = {
-  name: "profil",
-  description: "Donne les stats de l'utilisateur",
-};

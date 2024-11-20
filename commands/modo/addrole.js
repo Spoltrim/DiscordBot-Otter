@@ -36,7 +36,3 @@ module.exports = {
     });
   },
 };
-module.exports.help = {
-  name: "addrole",
-  description: "Ajoute un role ou plusieur role ",
-};

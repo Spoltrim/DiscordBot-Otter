@@ -44,7 +44,3 @@ module.exports = {
     });
   },
 };
-module.exports.help = {
-  name: "info-role",
-  description: "donne les informations sur le role mentionné",
-};

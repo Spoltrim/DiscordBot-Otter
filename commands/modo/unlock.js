@@ -24,8 +24,3 @@ module.exports = {
     });
   },
 };
-
-module.exports.help = {
-  name: "unlock",
-  description: "Permet de ouvrir un channel",
-};

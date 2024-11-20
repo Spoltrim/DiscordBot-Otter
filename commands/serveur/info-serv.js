@@ -36,8 +36,3 @@ module.exports = {
     });
   },
 };
-
-module.exports.help = {
-  name: "info-serv",
-  description: "Donne les stats du serveur",
-};

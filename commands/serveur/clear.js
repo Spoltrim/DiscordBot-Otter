@@ -22,7 +22,3 @@ module.exports = {
     await interaction.channel.bulkDelete(number);
   },
 };
-module.exports.help = {
-  name: "clear",
-  description: "supprime les messages",
-};

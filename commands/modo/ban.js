@@ -33,8 +33,3 @@ module.exports = {
     });
   },
 };
-
-module.exports.help = {
-  name: "ban",
-  description: "ban les personnes avec un caractère méchant ou autres",
-};

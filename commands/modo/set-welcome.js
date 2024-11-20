@@ -1,6 +1,6 @@
 const { EmbedBuilder } = require("discord.js");
 const fs = require("fs");
-const database = require("../../database.php");
+const database = require("../../database.sql");
 module.exports.run = async (client, message, args) => {
   const ID = message.channelid;
 

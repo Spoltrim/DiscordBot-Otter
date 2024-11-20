@@ -17,7 +17,3 @@ module.exports = {
     });
   },
 };
-module.exports.help = {
-  name: "ping",
-  description: "pong",
-};
