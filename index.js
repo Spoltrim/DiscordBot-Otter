@@ -125,7 +125,7 @@ client.on("ready", () => {
   setInterval(() => {
     client.user.setActivity(statuses[i](), {
       type: ActivityType.Streaming,
-      url: "https://www.twitch.tv/",
+      url: "https://www.twitch.tv/anaismrn",
     });
     i = ++i % statuses.length;
   }, 1e4);
