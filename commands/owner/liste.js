@@ -12,8 +12,7 @@ module.exports = {
     ),
   async execute(interaction) {
     const MDP = interaction.options.getString(`mdp`);
-
-    if (MDP === `loutre`) {
+    if (MDP === "Loutre" || MDP === "loutre") {
       return await await interaction.reply({
         embeds: [
           new EmbedBuilder()
@@ -44,7 +43,7 @@ module.exports = {
     ~~info-serveur~~
     ~~profil~~
     ~~Clear~~
-    Help
+    ~~Help~~
     ~~Slowmode~~
     ~~Ping~~
     ~~Lock~~

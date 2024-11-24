@@ -29,7 +29,3 @@ module.exports = {
     });
   },
 };
-module.exports.help = {
-  name: "message",
-  description: "envoie un message en mp ",
-};
