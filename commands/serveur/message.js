@@ -22,10 +22,36 @@ module.exports = {
     const member = interaction.guild.members.cache.find(
       (member) => member.toString() === user
     );
-    await interaction.reply({
+    if (!member) {
+      return interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setDescription("**Utilisateur introuvable.**")
+            .setColor("#4682B4"),
+        ],
+      });
+    }
+    try {
+      await member.send(mess);
+    } catch (error) {
+      return interaction.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setDescription("**Impossible d'envoyer le message.**")
+            .setColor("#4682B4"),
+        ],
+        flags: 64,
+      });
+    }
+
+    return interaction.reply({
       embeds: [
-        new EmbedBuilder().setDescription(`**${mess}.**`).setColor("#4682B4"),
+        new EmbedBuilder()
+          .setDescription("**Le message a bien été envoyé.**")
+          .setColor("#4682B4"),
       ],
+      flags: 64,
     });
   },
 };
+

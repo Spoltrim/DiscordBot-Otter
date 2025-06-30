@@ -7,7 +7,7 @@ const config = require("../../config.json");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("unlock")
-    .setDescription("Permet de ouvrir un channel"),
+    .setDescription("Permet d'ouvrir un channel"),
 
   async execute(interaction) {
     interaction.channel.permissionOverwrites.create(config.greeting.roleb, {
@@ -23,4 +23,9 @@ module.exports = {
       ],
     });
   },
+};
+
+module.exports.help = {
+  name: "unlock",
+  description: "Permet de ouvrir un channel",
 };

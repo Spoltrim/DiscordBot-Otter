@@ -37,3 +37,7 @@ module.exports = {
     });
   },
 };
+module.exports.help = {
+  name: "removerole",
+  description: "retire le role mentionné.",
+};

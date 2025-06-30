@@ -1,6 +1,5 @@
 const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
 
-//faire des permission pour que pas tout le monde puissse ban :)
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("ban")
@@ -34,3 +33,5 @@ module.exports = {
     });
   },
 };
+
+

@@ -16,9 +16,10 @@ module.exports = {
       embeds: [
         new EmbedBuilder()
           .setDescription(`${number} messages ont été clear ❤️`)
-          .setColor("#0000FF"),
+          .setColor("#0F056B"),
       ],
     });
     await interaction.channel.bulkDelete(number);
   },
 };
+

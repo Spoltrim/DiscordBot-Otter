@@ -1,3 +1,9 @@
+global.crypto = require("crypto");
+process.env.FFMPEG_PATH = require("ffmpeg-static");
+const { REST, Routes } = require("discord.js");
+const { DisTube } = require("distube");
+const { token, AppId, GUILD_ID } = require("./config");
+const { YtDlpPlugin } = require("@distube/yt-dlp");
 const {
   EmbedBuilder,
   Client,
@@ -6,15 +12,16 @@ const {
   Events,
   ActivityType,
 } = require("discord.js");
+
 const { writeFile } = require("fs");
 const config = require("./config.json");
 const fs = require("node:fs");
 const path = require("node:path");
 const console = require("console");
+const cli = require("nodemon/lib/cli");
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
-    GatewayIntentBits.GuildEmojisAndStickers,
     GatewayIntentBits.GuildIntegrations,
     GatewayIntentBits.GuildInvites,
     GatewayIntentBits.GuildMembers,
@@ -31,34 +38,35 @@ const client = new Client({
     GatewayIntentBits.MessageContent,
   ],
 });
-client.login(config.token);
 
+client.login(token);
+console.log("Le Bot est en ligne");
+client.distube = new DisTube(client, {
+  plugins: [new YtDlpPlugin()],
+});
+
+// Initialisation de la collection de commandes
 client.commands = new Collection();
-// On crée le chemin du dossier commands
+
+// Chargement des commandes
 const foldersPath = path.join(__dirname, "commands");
-// On récupère les dossiers dans commands
 const commandFolders = fs.readdirSync(foldersPath);
 
-// On boucle sur chaque dossier
 for (const folder of commandFolders) {
-  // On crée le chemin vers 1 dossier
   const commandsPath = path.join(foldersPath, folder);
-  // On récupère les fichiers JS du dossier
   const commandFiles = fs
     .readdirSync(commandsPath)
     .filter((file) => file.endsWith(".js"));
 
-  // On boucle sur les fichiers
   for (const file of commandFiles) {
-    // On crée le chemin du fichier
     const filePath = path.join(commandsPath, file);
     const command = require(filePath);
 
-    // On vérifie si on a data ET execute dans le fichier
     if ("data" in command && "execute" in command) {
+      command.category = folder;
       client.commands.set(command.data.name, command);
     } else {
-      console.log("L'un des deux attributs au moins est manquant");
+      console.warn(`⚠️ La commande dans ${file} est invalide.`);
     }
   }
 }
@@ -113,7 +121,7 @@ client.on("guildMemberRemove", (member) => {
 
 client.on("ready", () => {
   const statuses = [
-    () => `twerker sur la banquise arctique`,
+    () => `entrain de twerker sur la banquise arctique`,
     () => `${client.guilds.cache.size} serveurs`,
     () =>
       `${client.guilds.cache.reduce(
@@ -145,18 +153,18 @@ client.on("ready", () => {
 
     try {
       //On essaie d'exécuter l'interaction
-      await command.execute(interaction);
+      await command.execute(interaction, client);
     } catch (error) {
       console.log(error);
       if (interaction.replied || interaction.deferred) {
         await interaction.followUp({
           content: "Une erreur est survenue en exécutant cette commande",
-          ephemeral: true,
+          flags: 64,
         });
       } else {
         await interaction.reply({
           content: "Une erreur est survenue en exécutant cette commande",
-          ephemeral: true,
+          flags: 64,
         });
       }
     }

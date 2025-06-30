@@ -76,7 +76,4 @@ module.exports.run = async (client, message, args) => {
   });
   member.kick(reason);
 };
-module.exports.help = {
-  name: "kick",
-  description: "kick des gens",
-};
+

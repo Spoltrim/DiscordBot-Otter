@@ -1,17 +1,31 @@
-const { EmbedBuilder } = require("discord.js");
-module.exports.run = async (client, message, args) => {
-  const commandHelp = command.help.name;
-  message.channel.send({
-    embeds: [
-      new EmbedBuilder()
-        .setColor("#191970")
-        .setDescription(`${commandHelp}.`)
-        .setTimestamp(),
-    ],
-  });
-  console.log(commandHelp);
-};
-module.exports.help = {
-  name: "help",
-  description: "donne le nom de tout les commandes",
+const { SlashCommandBuilder, EmbedBuilder } = require("discord.js");
+
+module.exports = {
+  data: new SlashCommandBuilder()
+    .setName("help")
+    .setDescription("Affiche toutes les commandes disponibles du bot."),
+  async execute(interaction, client) {
+    const categories = {};
+
+    // Trie les commandes par catégorie
+    client.commands.forEach((command) => {
+      const category = command.category || "Autres";
+      if (!categories[category]) categories[category] = [];
+      categories[category].push(command);
+    });
+    // Création de l'embed
+    const embed = new EmbedBuilder()
+      .setTitle("📖 Aide - Commandes disponibles")
+      .setColor("Random");
+    for (const [category, cmds] of Object.entries(categories)) {
+      embed.addFields({
+        name: `📂 ${category}`,
+        value: cmds
+          .map((cmd) => `\`/${cmd.data.name}\` - ${cmd.data.description}`)
+          .join("\n"),
+        inline: false,
+      });
+    }
+    await interaction.reply({ embeds: [embed] });
+  },
 };

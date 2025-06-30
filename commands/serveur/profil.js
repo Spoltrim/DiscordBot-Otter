@@ -3,7 +3,7 @@ const { EmbedBuilder, SlashCommandBuilder } = require("discord.js");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("profil")
-    .setDescription("A définir mon reuf ")
+    .setDescription("Permet d'avoir le profil d'une personne")
     .addStringOption((option) =>
       option
         .setName("membre")

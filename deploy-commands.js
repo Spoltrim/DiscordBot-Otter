@@ -10,42 +10,41 @@ const foldersPath = path.join(__dirname, "commands");
 const commandFolders = fs.readdirSync(foldersPath);
 
 // On boucle sur chaque dossier
-for(const folder of commandFolders){
-    // On crée le chemin vers 1 dossier
-    const commandsPath = path.join(foldersPath, folder);
-    // On récupère les fichiers JS du dossier
-    const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith(".js"));
-    
-    // On boucle sur les fichiers
-    for(const file of commandFiles){
-        // On crée le chemin du fichier
-        const filePath = path.join(commandsPath, file);
-        const command = require(filePath);
+for (const folder of commandFolders) {
+  // On crée le chemin vers 1 dossier
+  const commandsPath = path.join(foldersPath, folder);
+  // On récupère les fichiers JS du dossier
+  const commandFiles = fs
+    .readdirSync(commandsPath)
+    .filter((file) => file.endsWith(".js"));
 
-        // On vérifie si on a data ET execute dans le fichier
-        if("data" in command && "execute" in command){
-            commands.push(command.data.toJSON());
-        }else{
-            console.log("L'un des deux attributs au moins est manquant");
-        }
+  // On boucle sur les fichiers
+  for (const file of commandFiles) {
+    // On crée le chemin du fichier
+    const filePath = path.join(commandsPath, file);
+    const command = require(filePath);
+
+    // On vérifie si on a data ET execute dans le fichier
+    if ("data" in command && "execute" in command) {
+      commands.push(command.data.toJSON());
+    } else {
+      console.log("L'un des deux attributs au moins est manquant " + file);
     }
+  }
 }
 
 // On initialise le module REST
-const rest = new REST().setToken(token);
+const rest = new REST({ version: "10" }).setToken(token);
 
 // On déploie les commandes
 (async () => {
-    try{
-        console.log(`Début de rafraichissement des ${commands.length} commandes`);
+  try {
+    console.log("🔁 Enregistrement des commandes...");
 
-        const data = await rest.put(
-            Routes.applicationCommands(AppId),
-            { body: commands }
-        );
+    await rest.put(Routes.applicationCommands(AppId), { body: commands });
 
-        console.log(`Fin de rafraichissement des ${data.length} commandes`);
-    }catch(error){
-        console.error(error);
-    }
+    console.log("✅ Commandes enregistrées !");
+  } catch (error) {
+    console.error(error);
+  }
 })();

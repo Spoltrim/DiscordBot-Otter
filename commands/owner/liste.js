@@ -12,7 +12,8 @@ module.exports = {
     ),
   async execute(interaction) {
     const MDP = interaction.options.getString(`mdp`);
-    if (MDP === "Loutre" || MDP === "loutre") {
+
+    if (MDP === `loutre`) {
       return await await interaction.reply({
         embeds: [
           new EmbedBuilder()
@@ -55,16 +56,17 @@ module.exports = {
               {
                 name: `Musique`,
                 value: `
-    Play
-    Stop
+    ~~Play~~
+    ~~Stop~~
     Loop
-    Disconnect
+    ~~Disconnect~~
     `,
                 inline: true,
               },
               {
                 name: `école`,
                 value: `
+    faire un site en php et mysql 
     heberger un site sur un esp32 ou autre connerie de ce genre en info 
     NodeRed 
     `,
@@ -83,4 +85,9 @@ module.exports = {
       ],
     });
   },
+};
+
+module.exports.help = {
+  name: "liste",
+  description: "To Do List",
 };
