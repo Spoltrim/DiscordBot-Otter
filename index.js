@@ -2,7 +2,7 @@ global.crypto = require("crypto");
 process.env.FFMPEG_PATH = require("ffmpeg-static");
 const { REST, Routes } = require("discord.js");
 const { DisTube } = require("distube");
-const { token, AppId, GUILD_ID } = require("./config");
+const { AppId, GUILD_ID } = require("./config");
 const { YtDlpPlugin } = require("@distube/yt-dlp");
 const {
   EmbedBuilder,
