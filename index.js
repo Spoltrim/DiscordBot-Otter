@@ -39,7 +39,7 @@ const client = new Client({
   ],
 });
 
-client.login(token);
+client.login(process.env.TOKEN);
 console.log("Le Bot est en ligne");
 client.distube = new DisTube(client, {
   plugins: [new YtDlpPlugin()],

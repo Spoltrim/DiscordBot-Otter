@@ -13,8 +13,8 @@ module.exports = {
   async execute(interaction) {
     const MDP = interaction.options.getString(`mdp`);
 
-    if (MDP === `loutre`) {
-      return await await interaction.reply({
+    
+      return await  interaction.reply({
         embeds: [
           new EmbedBuilder()
             .setTitle(`__To Do list__:`)
@@ -63,27 +63,9 @@ module.exports = {
     `,
                 inline: true,
               },
-              {
-                name: `école`,
-                value: `
-    faire un site en php et mysql 
-    heberger un site sur un esp32 ou autre connerie de ce genre en info 
-    NodeRed 
-    `,
-                inline: true,
-              }
             ),
         ],
       });
-    }
-    await interaction.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setTitle(`Dommage c'est perdu`)
-          .setColor("#050033")
-          .setTimestamp(),
-      ],
-    });
   },
 };
 
