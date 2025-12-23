@@ -1,9 +1,9 @@
-const { EmbedBuilder, Permissions } = require("discord.js");
-/*if (
-    !message.member.permissions.has(
-      Permissions.FLAGS.ADMINISTRATOR || Permissions.FLAGS.KICK_MEMBERS
-    )
-  )*/
+const {
+  EmbedBuilder,
+  Permissions,
+  SlashCommandBuilder,
+} = require("discord.js");
+
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("kick")
