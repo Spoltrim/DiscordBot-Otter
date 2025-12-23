@@ -34,7 +34,7 @@ for (const folder of commandFolders) {
 }
 
 // On initialise le module REST
-const rest = new REST({ version: "10" }).setToken(process.env.TOKEN);
+const rest = new REST({ version: "10" }).setToken(token);
 
 // On déploie les commandes
 (async () => {
