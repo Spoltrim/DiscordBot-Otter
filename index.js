@@ -12,7 +12,7 @@ const {
   Events,
   ActivityType,
 } = require("discord.js");
-
+require('dotenv').config();
 const { writeFile } = require("fs");
 const config = require("./config.json");
 const fs = require("node:fs");

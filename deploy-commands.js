@@ -1,8 +1,8 @@
 const { REST, Routes } = require("discord.js");
-const { token, AppId, GUILD_ID } = require("./config");
+const { AppId, GUILD_ID } = require("./config");
 const fs = require("node:fs");
 const path = require("node:path");
-
+require('dotenv').config();
 const commands = [];
 // On crée le chemin du dossier commands
 const foldersPath = path.join(__dirname, "commands");
